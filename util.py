@@ -20,9 +20,10 @@ def invoke_agent(agentId: str, agentAliasId: str, inputText: str, sessionId: str
     agent_response = ""
 
     print(f"User: {textwrap.fill(inputText, width=width)}\n")
-    print("Agent:", end=" ", flush=True)
+    # print("Agent:", end=" ", flush=True)
 
     for event in event_stream:
+        # print(f"event: {event}")
         if 'chunk' in event:
             chunk_text = event['chunk'].get('bytes', b'').decode('utf-8')
             if not enableTrace:  # Only print chunks if trace is not enabled
